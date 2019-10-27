@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="PostgreSQL - studyabroad@localhost" uuid="30183430-5329-4c26-940b-af3f7d192bec">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/studyabroad</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="studyabroad@localhost" uuid="e81fab68-750b-40e7-8fed-a4f8fee0b06a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/studyabroad</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -2,5 +2,50 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-<link rel='stylesheet' href="{% static 'css/reactify-django.ui.css' %}" />
+<link rel='stylesheet' href="{% static 'admin/css/reactify-django.ui.css' %}" />
 
+<style>
+
+        .icon{
+  float: left;
+  color: #18d26e;
+  font-size: 36px;
+  line-height: 1;
+  transition: 0.5s;
+}
+.pinned-item-list-item {
+    {#display: flex;#}
+    {#width: 340px !important;#}
+    {#margin-right: 2px;#}
+    padding: 5px;
+}
+.p-3 {
+    padding: 16px!important;
+}
+.mb-3 {
+    margin-bottom: 16px!important;
+}
+.border-gray-dark {
+    border-color: #d1d5da!important;
+}
+.rounded-1 {
+    border-radius: 3px!important;
+}
+.border {
+    border: 1px solid #e1e4e8!important;
+}
+.box{
+    height: 22%;
+}
+    @media (max-width:763px){
+        .box{
+            height: auto;
+        }
+
+    }
+    @media (min-width: 993px){
+        .box{
+            {#height: 24%;#} min-height:250px ;
+        }
+    }
+</style>

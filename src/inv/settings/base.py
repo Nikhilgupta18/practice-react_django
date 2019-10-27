@@ -3,6 +3,8 @@ from decouple import config
 import datetime
 
 
+SECRET_KEY = 'ksy0*&5)&=lxwj-7g+$zepz3#2*vt#os^nbi5o&2#k_s5s6ee@'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -57,6 +59,10 @@ INSTALLED_APPS = [
     'university',
     'forums',
     'article',
+    'posts',
+    'api',
+
+    'rest_framework'
 
 ]
 

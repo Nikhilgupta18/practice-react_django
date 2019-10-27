@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'university',
     'forums',
     'article',
+    'api',
 
 ]
 

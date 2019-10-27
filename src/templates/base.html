@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class='container-fluid'>
-        {% include 'navbar.html' %}
+        {% include 'snippets/nav.html' %}
 
         {% block content %}
             
@@ -18,7 +18,7 @@
 
     </div>  
 
-
+    {% include 'credentials.html' %}
     {% include 'js.html' %}
   </body>
 </html>

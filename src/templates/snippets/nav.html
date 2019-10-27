@@ -1,0 +1,108 @@
+{% block content %}
+    {% load static %}
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+<style>
+#heade{
+        padding: 20px 0;
+    height: 72px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    transition: all 0.5s;
+    z-index: 997
+}
+.ym-h{
+    margin-top: -10px;
+    margin-left: 20px;
+}
+.scrollto{
+    color:white;
+}
+</style>
+  <!-- Bootstrap CSS File -->
+{#    <link rel="stylesheet" href="{% static "base/index/lib/bootstrap/css/bootstrap.min.css" %}">#}
+    <link rel="stylesheet" href="{% static "base/index/lib/font-awesome/css/font-awesome.min.css" %}">
+<link rel="stylesheet" href="{% static "base/index/css/style.css" %}">
+
+  <header id="heade" style="background-color: black" class="header-scrolled">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+{#        <h1 style="font-weight: 700;"><a href="/" class="scrollto ym-h">YMGrad</a></h1>#}
+
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+        <a href="/"><img src="{% static 'base/logo.png' %}" id="uni_logo" height="50" style="margin-top:-10px"/></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+
+                <li><a href="/service">Services</a></li>
+                        <li><a href="/study_material/">Material<sup><span style="background: forestgreen; border-radius: 3px; padding: 2px 2px 2px 2px;">New</span></sup></a></li>
+
+                <li><a href="/admits_rejects/">Decisions</a></li>
+
+{#        # if screen width > 768:#}
+
+
+{#        <li class="visible-xs"><a href="#">asdasd</a></li>#}
+            <li><a href="/unipredict/">UniPredict</a></li>
+                <li><a href="/forums">Forums</a></li>
+                <li><a href="/article/">Articles</a></li>
+
+            {% if user.is_authenticated %}
+      <li class="dropdown hidden-xs">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account </a>
+            <ul class="dropdown-menu">
+                <li><a href="/account/dashboard">Dashboard</a></li>
+                <li><a href="{% url "logout" %}">Log Out</a></li>
+            </ul>
+      </li>
+            {% else %}
+                      <li class="dropdown hidden-xs">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account </a>
+            <ul class="dropdown-menu">
+                <li><a href="/account/login">Log in</a></li>
+                <li><a href="/account/register">Sign Up</a></li>
+                            </ul>
+      </li>
+            {% endif %}
+
+
+            {% if user.is_authenticated %}
+
+                <li class="visible-xs"><a href="/account/dashboard">Dashboard</a></li>
+                <li class="visible-xs"><a href="{% url "logout" %}">Log Out</a></li>
+
+            {% else %}
+
+                <li class="visible-xs"><a href="/account/login">Log in</a></li>
+                <li class="visible-xs"><a href="/account/register">Sign Up</a></li>
+
+            {% endif %}
+
+
+
+
+
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+
+
+
+  <script src="{% static "base/index/lib/superfish/hoverIntent.js" %}"></script>
+  <script src="{% static "base/index/lib/superfish/superfish.min.js" %}"></script>
+  <script src="{% static "base/index/lib/wow/wow.min.js" %}"></script>
+
+  <script src="{% static "base/index/js/main.js" %}"></script>
+
+
+{% endblock %}

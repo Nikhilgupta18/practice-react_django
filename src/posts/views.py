@@ -1,9 +1,12 @@
 from rest_framework import generics, permissions, pagination
 from rest_framework.response import Response
-
+from django.http import JsonResponse
+from services.models import Service
 from .models import Post
 from .permissions import IsOwnerOrReadOnly
 from .serializers import PostSerializer
+from django.core import serializers
+
 
 class PostPageNumberPagination(pagination.PageNumberPagination):
     page_size = 5
@@ -39,12 +42,17 @@ class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class PostListCreateAPIView(generics.ListCreateAPIView):
-    queryset            = Post.objects.all()
-    serializer_class    = PostSerializer
-    permission_classes  = [permissions.IsAuthenticatedOrReadOnly]
-    pagination_class    = PostPageNumberPagination
+    # queryset            = Post.objects.all()
+    # serializer_class    = PostSerializer
+    # permission_classes  = [permissions.IsAuthenticatedOrReadOnly]
+    # pagination_class    = PostPageNumberPagination
+    #
+    # def perform_create(self, serializer):
+    #     serializer.save(user=self.request.user)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    def get(self, request, *args, **kwargs):
+        services = Service.objects.all()
+        services = serializers.serialize('json', services)
+        return JsonResponse({"services": services})
 
 

@@ -11,12 +11,14 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('posts/', TemplateView.as_view(template_name='react.html')),
     path('', Index.as_view()),
     path('account/', include('account.urls')),
     path('university/', include('university.urls')),
     path('service/', include('services.urls')),
     path('forums/', include('forums.urls')),
     path('article/', include('article.urls')),
+    path('api/', include('api.urls')),
     path('all_links/', AllLinks.as_view(), name='all_links'),
     path('unipredict/', FilterUnis.as_view(), name='filter_unis'),
     path('study_material/', PaidMaterialView.as_view(), name='paid_material_view'),

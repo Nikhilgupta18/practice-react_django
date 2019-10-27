@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
+
+              console.log('twii');
+
 let myComponent =  document.getElementById('reactify-django-ui')
 if (myComponent !== null){
     ReactDOM.render(<App />,myComponent);

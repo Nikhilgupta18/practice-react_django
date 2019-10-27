@@ -55,7 +55,7 @@ class Index(View):
         context['countries'] = countries
         context['grad_profiles'] = grad_profiles
 
-        return render(request, template_name="index.html", context=context)
+        return render(request, template_name="react.html", context=context)
 
 
 class UniversitySearchPage(View):

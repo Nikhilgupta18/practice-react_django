@@ -30,6 +30,7 @@ class Posts extends Component {
     }
     
   loadPosts(nextEndpoint){
+        console.log("Load");
       let endpoint = '/api/posts/' 
       if (nextEndpoint !== undefined) {
           endpoint = nextEndpoint

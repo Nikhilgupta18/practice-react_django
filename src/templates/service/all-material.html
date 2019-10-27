@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load static %}
+    <title>The Best Study Material for GRE, TOEFL, IELTS | YMGrad</title>
+              <meta content="YMGrad, YMGrad articles, Study Abroad, MS in USA, Masters Abroad, Bachelors Abroad, TOEFL, IELTS, GRE, LSAT, MCAT, GMAT, Admits, Rejects, Profile Evaluation, University Shortlisting, SOP, Statement of Purpose, LOR, Letter of Recommendation, SOP Help, LOR Help, Application Help, Yash Mittra" name="keywords">
+  <meta content="All the study material you will ever need for GRE, TOEFL, and IELTS. Buy into the material with the click of a button and gain instant access." name="description">
+
+{% include "snippets/nav.html" %}
+    <style>
+    body{
+        margin-top: 100px;
+    }
+    </style>
+    <link rel="stylesheet" href="{% static 'admin/css/article1.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/article2.css' %}">
+
+<div class="container">
+          <h2 style="text-align: center; font-weight: bold; ">All Premium Study Material</h2>
+          <p style="text-align: center; opacity: 0.75;">An initiative to bring you all the costly paid material in a very pocket-friendly price. <b>Please mention your GMAIL Email ID while paying.</b> Taxes are already included.</p>
+
+    {% for material in materials %}
+        <div class="col-sm-4">
+    <article class="video_post postType3" style="margin-bottom: 5%;">
+        <div class="inner m0" style="min-width: 175px;">
+            <a><div class=" screencast m0">
+                <img src="/media/{{ material.thumbnail }}" alt="" class="cast img-responsive">
+            </div></a>
+            <div class=" m0 post_data">
+                <div class=" m0"><a class="post_title">{{ material.name }}</a></div>
+                <div class=" m0" style="opacity: 0.75; font-size: small">{{ material.details }}</div>
+                {% if material.limited %}
+                <div class="fleft date" style="margin-bottom: 2%;">{% if material.is_available %}<span style="color: red;"><i class="fa fa-clock-o" aria-hidden="true"></i> Only 1 account left!</span>{% endif %}</div>
+                {% endif %}
+            {% if material.price_about_to_increase %}
+                                <div class="fright views" style="margin-bottom: 2%;"><a href="#"><span style="color: orangered"><i class="fas fa-fire"></i> Price increases soon!</span></a></div>
+            {% endif %}
+            </div>
+
+        <div class=" m0">
+
+        </div>
+        {% if user.is_authenticated %}
+        <button id="rzp-button1{{ material.slug }}inr" class="btn btn-block btn-success">Buy Now (INR)</button>
+        <button id="rzp-button1{{ material.slug }}usd" class="btn btn-block btn-primary">Buy Now (USD)</button>
+        {% else %}
+            <a href="/account/login/?next=/study_material/"><button id="login_first" class="btn btn-block btn-primary">Login Required</button></a>
+        {% endif %}
+<form method="POST" action="{% url 'paid_material_view' %}" id="purchaseinr{{ material.slug }}">
+ {% csrf_token %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+var options_{{ material.slug }}_inr = {
+    "key": "{{ key_id }}",
+    "amount":'{{ material.price_inr }}' , /// The amount is shown in currency subunits. Actual amount is ₹599.
+    "name": "{{ material.name }}",
+    {#"order_id": "<YOUR_ORDER_ID>", // Pass the order ID if you are using Razorpay Orders.#}
+    "currency": "INR", // Optional. Same as the Order currency
+    "description": "{{ material.details }}",
+    "image": "https://www.yashmittrainvesting.com/static/base/white.png",
+    "buttontext":"Buy Now",
+    "handler": function (response){
+        $('#razorpay_payment_inr_{{ material.slug }}').val(response.razorpay_payment_id);
+        $('#purchaseinr{{ material.slug }}').trigger('submit');
+    },
+    "prefill": {
+        "name": "{{ user.first_name }}",
+        "email": "{{ user.email }}",
+        "contact": "{{ user.student.mobile }}"
+    },
+
+    "theme": {
+        "color": "#F37254"
+    }
+};
+var rzp1{{ material.slug }}inr = new Razorpay(options_{{ material.slug }}_inr);
+document.getElementById('rzp-button1{{ material.slug }}inr').onclick = function(e){
+    rzp1{{ material.slug }}inr.open();
+    e.preventDefault();
+}
+</script>
+
+<input type="hidden" value="Hidden Element" name="hidden">
+<input type="hidden" value="{{ material.price_inr }}" id="inpamount" name="amount">
+<input type="hidden" value="inr" id="inpcurrency" name="currency">
+<input type="hidden" value="" name="razorpay_payment_id" id="razorpay_payment_inr_{{ material.slug }}">
+<input type="hidden" value="{{ material.name }}" name="material_name">
+
+</form>
+
+<form method="POST" action="{% url 'paid_material_view' %}" id="purchaseusd{{ material.slug }}">
+ {% csrf_token %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+var options_{{ material.slug }}_usd = {
+    "key": "{{ key_id }}",
+    "amount":'{{ material.price_usd }}' , /// The amount is shown in currency subunits. Actual amount is ₹599.
+    "name": "{{ material.name }}",
+    {#"order_id": "<YOUR_ORDER_ID>", // Pass the order ID if you are using Razorpay Orders.#}
+    "currency": "USD", // Optional. Same as the Order currency
+    "description": "{{ material.details }}",
+    "image": "https://www.yashmittrainvesting.com/static/base/white.png",
+    "buttontext":"Buy Now",
+    "handler": function (response){
+        $('#razorpay_payment_usd_{{ material.slug }}').val(response.razorpay_payment_id);
+        $('#purchaseusd{{ material.slug }}').trigger('submit');
+    },
+    "prefill": {
+        "name": "{{ user.first_name }}",
+        "email": "{{ user.email }}",
+        "contact": "{{ user.student.mobile }}"
+
+    },
+
+    "theme": {
+        "color": "#F37254"
+    }
+};
+var rzp1{{ material.slug }}usd = new Razorpay(options_{{ material.slug }}_usd);
+document.getElementById('rzp-button1{{ material.slug }}usd').onclick = function(e){
+    rzp1{{ material.slug }}usd.open();
+    e.preventDefault();
+}
+</script>
+
+<input type="hidden" value="Hidden Element" name="hidden">
+<input type="hidden" value="{{ material.price_usd }}" id="inpamount" name="amount">
+<input type="hidden" value="usd" id="inpcurrency" name="currency">
+<input type="hidden" value="" name="razorpay_payment_id" id="razorpay_payment_usd_{{ material.slug }}">
+<input type="hidden" value="{{ material.name }}" name="material_name">
+
+</form>
+
+        </div>
+    </article>
+        </div>
+{% endfor %}
+
+</div>
+
+    <script>
+
+        $(document).ready(function() {
+                        if ($(window).width() > 480) {
+
+                            var maxHeight = Math.max.apply(null, $("div.inner").map(function () {
+                                return $(this).height();
+                            }).get());
+
+                            $('div.inner').each(function () {
+
+                                var self = $(this);
+                                self.height(maxHeight);
+
+                            });
+                        }
+        });
+    </script>
+        <script>
+
+        $(document).ready(function() {
+                        if ($(window).width() > 480) {
+
+            var maxHeight1 = Math.max.apply(null, $("div.post_data").map(function () {
+                return $(this).height();
+            }).get());
+
+            $('div.post_data').each(function () {
+
+                var self = $(this);
+                self.height(maxHeight1);
+
+            });
+        }
+        });
+    </script>
+
+{% endblock %}
